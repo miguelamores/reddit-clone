@@ -8,7 +8,7 @@ import Post from "./components/Post";
 const App = ({ expiryTimestamp }) => {
   const [posts, setPosts] = useState([
     { id: 1, name: "Post 11" },
-    { id: 2, name: "Post 22" },
+    { id: 2, name: "Post 2" },
   ]);
 
   const removePost = (id) => {

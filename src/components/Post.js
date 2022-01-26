@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useTimer } from "react-timer-hook";
 
@@ -17,11 +17,21 @@ const Post = ({ children, expiryTimestamp, id, removePost }) => {
     expiryTimestamp,
     onExpire: () => removePost(id),
   });
-  console.log(seconds);
+
+  const handleLike = useCallback(() => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + seconds + 10);
+    restart(time);
+  }, [restart, seconds]);
 
   return (
-    <Card id={id} onClick={() => removePost(id)}>
+    <Card
+      id={id}
+      //onClick={() => false && removePost(id)}
+    >
+      {minutes}:{seconds}
       {children}
+      <Like onClick={handleLike}>Like</Like>
     </Card>
   );
 };
@@ -36,5 +46,7 @@ const Card = styled.div`
   border-radius: 3px;
   display: block;
 `;
+
+const Like = styled.button``;
 
 export default Post;
