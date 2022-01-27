@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { usePosts } from "../hooks/usePosts";
 
 const INITIAL_FORM = {
   title: "",
@@ -9,6 +11,10 @@ const INITIAL_FORM = {
 
 const CreatePost = () => {
   const [form, setForm] = useState(INITIAL_FORM);
+  const { posts, savePost } = usePosts();
+  let navigate = useNavigate();
+
+  console.log(posts);
 
   const handleText = (e) => {
     const { name, value } = e.target;
@@ -18,12 +24,10 @@ const CreatePost = () => {
   };
 
   const handleImage = (el) => {
-    console.log(el.target);
     const file = el.target.files[0];
     const reader = new FileReader();
     const newForm = { ...form };
     reader.onloadend = function () {
-      console.log("RESULT", reader.result);
       newForm.image = reader.result;
       setForm(newForm);
     };
@@ -32,12 +36,13 @@ const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit");
     if (!form?.title && !form?.image) return;
 
     const newForm = { ...form };
     newForm.id = crypto.randomUUID();
-    localStorage.setItem("redditPosts", JSON.stringify(newForm));
+    savePost(newForm);
+    setForm(INITIAL_FORM);
+    navigate("/");
   };
 
   return (
