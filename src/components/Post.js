@@ -20,15 +20,12 @@ const Post = ({ children, expiryTimestamp, id, removePost }) => {
 
   const handleLike = useCallback(() => {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + seconds + 10);
+    time.setSeconds(time.getSeconds() + seconds + 120);
     restart(time);
   }, [restart, seconds]);
 
   return (
-    <Card
-      id={id}
-      //onClick={() => false && removePost(id)}
-    >
+    <Card id={id}>
       {minutes}:{seconds}
       {children}
       <Like onClick={handleLike}>Like</Like>

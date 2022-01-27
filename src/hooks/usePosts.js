@@ -6,11 +6,11 @@ export const usePosts = () => {
   const [posts, setPosts] = useState(null);
 
   const getPosts = useCallback(() => {
-    const posts = localStorage.getItem(REDDIT_POSTS);
-    if (!posts) return null;
+    const savedPosts = localStorage.getItem(REDDIT_POSTS);
+    if (!savedPosts) return null;
 
     try {
-      const parsedPosts = JSON.parse(posts);
+      const parsedPosts = JSON.parse(savedPosts);
       return parsedPosts;
     } catch (error) {
       return [];
@@ -19,11 +19,11 @@ export const usePosts = () => {
 
   const savePost = useCallback(
     (post) => {
-      const posts = getPosts();
-      if (posts) {
-        posts.push(post);
-        setPosts(posts);
-        localStorage.setItem(REDDIT_POSTS, JSON.stringify(posts));
+      const postList = getPosts();
+      if (postList) {
+        postList.push(post);
+        setPosts(postList);
+        localStorage.setItem(REDDIT_POSTS, JSON.stringify(postList));
       } else {
         localStorage.setItem(REDDIT_POSTS, JSON.stringify([post]));
       }
@@ -32,12 +32,11 @@ export const usePosts = () => {
   );
 
   const removePost = (id) => {
-    const posts = getPosts();
-    const postsCopy = [...posts];
-    const index = posts.findIndex((post) => post.id === id);
+    const postList = getPosts();
+    const postsCopy = [...postList];
+    const index = postsCopy.findIndex((post) => post.id === id);
     if (index >= 0) {
       postsCopy.splice(index, 1);
-      console.log(postsCopy);
       setPosts(postsCopy);
       localStorage.setItem(REDDIT_POSTS, JSON.stringify(postsCopy));
     }
