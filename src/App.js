@@ -1,40 +1,28 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import * as React from "react";
 import styled from "styled-components";
-import { useTimer } from "react-timer-hook";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import Post from "./components/Post";
+import PostList from "./pages/PostList";
+import CreatePost from "./pages/CreatePost";
 
-const App = ({ expiryTimestamp }) => {
-  const [posts, setPosts] = useState([
-    { id: 1, name: "Post 11" },
-    { id: 2, name: "Post 2" },
-  ]);
-
-  const removePost = (id) => {
-    const postsCopy = [...posts];
-    const index = posts.findIndex((post) => post.id === id);
-    if (index >= 0) {
-      postsCopy.splice(index, 1);
-      console.log(postsCopy);
-      setPosts(postsCopy);
-    }
-  };
-
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 10);
-
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {posts.map((post) => (
-          <Post id={post.id} expiryTimestamp={time} removePost={removePost}>
-            {post.name}
-          </Post>
-        ))}
-      </header>
-    </div>
+    <Container>
+      <h1>Welcome to React Router!</h1>
+      {/* <BrowserRouter> */}
+      <Routes>
+        <Route path="/" element={<PostList />} />
+        <Route path="about" element={<CreatePost />} />
+      </Routes>
+      {/* </BrowserRouter> */}
+    </Container>
   );
-};
+}
+
+const Container = styled.div`
+  background-color: #dae0e6;
+  height: 100vh;
+  padding: 3rem 5rem;
+`;
 
 export default App;
