@@ -1,28 +1,22 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useTimer } from "react-timer-hook";
 
 const Post = ({ children, expiryTimestamp, id, removePost }) => {
-  const {
-    seconds,
-    minutes,
-    hours,
-    days,
-    isRunning,
-    start,
-    pause,
-    resume,
-    restart,
-  } = useTimer({
+  const [newExpiry, setNewExpiry] = useState(
+    new Date(expiryTimestamp.getTime())
+  );
+  const { seconds, minutes, hours, days, restart } = useTimer({
     expiryTimestamp,
     onExpire: () => removePost(id),
   });
 
   const handleLike = useCallback(() => {
-    const time = new Date();
-    time.setSeconds(time.getSeconds() + seconds + 120);
+    const time = new Date(newExpiry.getTime());
+    time.setSeconds(time.getSeconds() + 30);
+    setNewExpiry(time);
     restart(time);
-  }, [restart, seconds]);
+  }, [newExpiry, restart]);
 
   return (
     <Card id={id}>
