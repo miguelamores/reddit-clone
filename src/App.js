@@ -19,10 +19,14 @@ function App() {
 }
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #dae0e6;
   height: 100%;
   min-height: 100vh;
   padding: 7rem 5rem;
+  margin: 0 auto;
 `;
 
 export default App;

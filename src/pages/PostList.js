@@ -36,6 +36,7 @@ const PostsWrapper = styled.section`
   flex-direction: column;
   gap: 2rem;
   margin-top: 3rem;
+  max-width: 70rem;
 `;
 
 export default PostList;
