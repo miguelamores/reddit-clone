@@ -47,19 +47,24 @@ const CreatePost = () => {
 
   return (
     <Container onSubmit={handleSubmit}>
-      <Title
+      <Title>Create a new post</Title>
+      <FormTitle
         placeholder="Title"
         name="title"
         value={form?.title}
         onChange={handleText}
       />
       <Description
+        placeholder="Description..."
+        as="textarea"
         name="description"
         value={form?.description}
         onChange={handleText}
       />
       <Image type="file" accept="image/*" onChange={handleImage} />
-      <SaveBtn type="submit">Save</SaveBtn>
+      <SaveBtn disabled={!form?.title || !form?.image} type="submit">
+        Save
+      </SaveBtn>
     </Container>
   );
 };
@@ -70,11 +75,36 @@ const Container = styled.form`
   gap: 2rem;
   background-color: #ffffff;
   padding: 2rem;
+  max-width: 70rem;
+  width: 100%;
 `;
 
-const Title = styled.input``;
+const Title = styled.h1`
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+`;
 
-const Description = styled.textarea``;
+const FormTitle = styled.input`
+  background-color: #f6f7f8;
+  border: 1px solid #edeff1;
+  border-radius: 0.4rem;
+  box-shadow: none;
+  box-sizing: border-box;
+  height: 3.8rem;
+  padding: 01.6rem;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background-color: #ffffff;
+    border: 1px solid #0079d3;
+  }
+`;
+
+const Description = styled(Title)`
+  height: 10rem;
+`;
 
 const Image = styled.input``;
 
@@ -84,6 +114,15 @@ const SaveBtn = styled.button`
   background-color: #0079d3;
   color: #ffffff;
   padding: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #edeff1;
+  }
 `;
 
 export default CreatePost;

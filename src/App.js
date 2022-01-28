@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<PostList />} />
-        <Route path="about" element={<CreatePost />} />
+        <Route path="create-post" element={<CreatePost />} />
       </Routes>
     </Container>
   );

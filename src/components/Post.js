@@ -95,6 +95,10 @@ const Card = styled.div`
       fill: #00ccc0;
     }
   }
+
+  &:hover {
+    border-color: #898989;
+  }
 `;
 
 const Header = styled.div`
