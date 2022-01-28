@@ -77,12 +77,22 @@ const Container = styled.form`
   padding: 2rem;
   max-width: 70rem;
   width: 100%;
+
+  @media only screen and (max-width: 43.75em) {
+    height: 100%;
+  }
 `;
 
 const Title = styled.h1`
   text-align: center;
   font-size: 3rem;
   margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: 800;
+
+  @media only screen and (max-width: 43.75em) {
+    font-size: 4rem;
+  }
 `;
 
 const FormTitle = styled.input`
@@ -95,6 +105,11 @@ const FormTitle = styled.input`
   padding: 01.6rem;
   outline: none;
 
+  @media only screen and (max-width: 43.75em) {
+    font-size: 2rem;
+    height: 5rem;
+  }
+
   &:hover,
   &:focus {
     background-color: #ffffff;
@@ -102,8 +117,12 @@ const FormTitle = styled.input`
   }
 `;
 
-const Description = styled(Title)`
+const Description = styled(FormTitle)`
   height: 10rem;
+
+  @media only screen and (max-width: 43.75em) {
+    height: 15rem;
+  }
 `;
 
 const Image = styled.input``;
@@ -114,6 +133,10 @@ const SaveBtn = styled.button`
   background-color: #0079d3;
   color: #ffffff;
   padding: 1rem;
+
+  @media only screen and (max-width: 43.75em) {
+    font-size: 2rem;
+  }
 
   &:hover {
     cursor: pointer;

@@ -131,6 +131,10 @@ const Image = styled.img`
   display: block;
   max-height: 40rem;
   object-fit: cover;
+
+  @media only screen and (max-width: 43.75em) {
+    width: 100%;
+  }
 `;
 
 const Footer = styled.div`

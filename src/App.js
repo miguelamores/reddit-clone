@@ -27,6 +27,10 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 7rem 5rem;
   margin: 0 auto;
+
+  @media only screen and (max-width: 43.75em) {
+    padding: 7rem 0.5rem;
+  }
 `;
 
 export default App;

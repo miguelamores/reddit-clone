@@ -37,7 +37,8 @@ const StyledLink = styled(Link)`
   border-radius: 0.2rem;
   color: #000000;
   padding: 0.5rem 2rem;
-  width: 70rem;
+  max-width: 70rem;
+  width: 100%;
   text-decoration: none;
 
   & > svg {
