@@ -31,29 +31,35 @@ export const usePosts = () => {
     [getPosts]
   );
 
-  const removePost = (id) => {
-    const postList = getPosts();
-    const postsCopy = [...postList];
-    const index = postsCopy.findIndex((post) => post.id === id);
-    if (index >= 0) {
-      postsCopy.splice(index, 1);
-      setPosts(postsCopy);
-      localStorage.setItem(REDDIT_POSTS, JSON.stringify(postsCopy));
-    }
-  };
+  const removePost = useCallback(
+    (id) => {
+      const postList = getPosts();
+      const postsCopy = [...postList];
+      const index = postsCopy.findIndex((post) => post.id === id);
+      if (index >= 0) {
+        postsCopy.splice(index, 1);
+        setPosts(postsCopy);
+        localStorage.setItem(REDDIT_POSTS, JSON.stringify(postsCopy));
+      }
+    },
+    [getPosts]
+  );
 
-  const updatePost = (id, time) => {
-    const postList = getPosts();
-    const postsCopy = [...postList];
+  const updatePost = useCallback(
+    (id, time) => {
+      const postList = getPosts();
+      const postsCopy = [...postList];
 
-    const index = postsCopy.findIndex((post) => post.id === id);
-    if (index >= 0) {
-      postsCopy[index].time = time;
-      setPosts(postsCopy);
-      console.log(postsCopy);
-      localStorage.setItem(REDDIT_POSTS, JSON.stringify(postsCopy));
-    }
-  };
+      const index = postsCopy.findIndex((post) => post.id === id);
+      if (index >= 0) {
+        postsCopy[index].time = time;
+        setPosts(postsCopy);
+        console.log(postsCopy);
+        localStorage.setItem(REDDIT_POSTS, JSON.stringify(postsCopy));
+      }
+    },
+    [getPosts]
+  );
 
   useEffect(() => {
     const posts = getPosts();
