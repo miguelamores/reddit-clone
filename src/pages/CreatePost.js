@@ -36,7 +36,7 @@ const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form?.title && !form?.image) return;
+    if (!form?.title) return;
 
     const time = new Date();
     time.setSeconds(time.getSeconds() + 60);
@@ -65,7 +65,7 @@ const CreatePost = () => {
         onChange={handleText}
       />
       <Image type="file" accept="image/*" onChange={handleImage} />
-      <SaveBtn disabled={!form?.title || !form?.image} type="submit">
+      <SaveBtn disabled={!form?.title} type="submit">
         Save
       </SaveBtn>
     </Container>

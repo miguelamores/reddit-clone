@@ -42,8 +42,8 @@ const Post = ({
       </Header>
       <Body>
         <Title>{title}</Title>
-        <Description>{description}</Description>
-        <Image src={image} alt="post" />
+        {description && <Description>{description}</Description>}
+        {image && <Image src={image} alt="post" />}
       </Body>
       <Footer>
         <Like onClick={handleLike}>
