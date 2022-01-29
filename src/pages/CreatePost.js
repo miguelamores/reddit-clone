@@ -38,8 +38,11 @@ const CreatePost = () => {
     e.preventDefault();
     if (!form?.title && !form?.image) return;
 
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 60);
     const newForm = { ...form };
     newForm.id = crypto.randomUUID();
+    newForm.time = time;
     savePost(newForm);
     setForm(INITIAL_FORM);
     navigate("/");

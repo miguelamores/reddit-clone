@@ -6,10 +6,7 @@ import CreateLink from "../components/CreateLink";
 import { usePosts } from "../hooks/usePosts";
 
 const PostList = () => {
-  const { posts, savePost, removePost } = usePosts();
-
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 60);
+  const { posts, removePost } = usePosts();
 
   return (
     <>
@@ -19,12 +16,10 @@ const PostList = () => {
           <Post
             key={post.id}
             id={post.id}
-            expiryTimestamp={time}
+            expiryTimestamp={new Date(post?.time)}
             removePost={removePost}
             {...post}
-          >
-            {post.name}
-          </Post>
+          />
         ))}
       </PostsWrapper>
     </>
@@ -37,6 +32,7 @@ const PostsWrapper = styled.section`
   gap: 2rem;
   margin-top: 3rem;
   max-width: 70rem;
+  width: 100%;
 `;
 
 export default PostList;
