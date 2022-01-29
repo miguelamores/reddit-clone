@@ -42,10 +42,23 @@ export const usePosts = () => {
     }
   };
 
+  const updatePost = (id, time) => {
+    const postList = getPosts();
+    const postsCopy = [...postList];
+
+    const index = postsCopy.findIndex((post) => post.id === id);
+    if (index >= 0) {
+      postsCopy[index].time = time;
+      setPosts(postsCopy);
+      console.log(postsCopy);
+      localStorage.setItem(REDDIT_POSTS, JSON.stringify(postsCopy));
+    }
+  };
+
   useEffect(() => {
     const posts = getPosts();
     setPosts(posts);
   }, [getPosts, setPosts]);
 
-  return { posts, savePost, removePost };
+  return { posts, savePost, removePost, updatePost };
 };

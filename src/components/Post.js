@@ -7,6 +7,7 @@ const Post = ({
   expiryTimestamp,
   id,
   removePost,
+  updatePost,
   title,
   description,
   image,
@@ -16,15 +17,16 @@ const Post = ({
   );
   const { seconds, minutes, hours, days, restart } = useTimer({
     expiryTimestamp,
-    onExpire: () => null, //removePost(id),
+    onExpire: () => removePost(id),
   });
 
   const handleLike = useCallback(() => {
     const time = new Date(newExpiry.getTime());
     time.setSeconds(time.getSeconds() + 30);
     setNewExpiry(time);
+    updatePost(id, time);
     restart(time);
-  }, [newExpiry, restart]);
+  }, [newExpiry, restart, updatePost, id]);
 
   return (
     <Card id={id}>

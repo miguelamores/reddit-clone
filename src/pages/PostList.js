@@ -6,7 +6,7 @@ import CreateLink from "../components/CreateLink";
 import { usePosts } from "../hooks/usePosts";
 
 const PostList = () => {
-  const { posts, removePost } = usePosts();
+  const { posts, removePost, updatePost } = usePosts();
 
   return (
     <>
@@ -18,6 +18,7 @@ const PostList = () => {
             id={post.id}
             expiryTimestamp={new Date(post?.time)}
             removePost={removePost}
+            updatePost={updatePost}
             {...post}
           />
         ))}
